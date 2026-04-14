@@ -1,0 +1,221 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== ОСНОВА ===== */
+body {
+    font-family: "Inter", "Segoe UI", sans-serif;
+    background: #E3F0FA;
+    color: #1a2a3a;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== ФОН (ЛЁД / СВЕТ) ===== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(195, 224, 244, 0.6), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(137, 170, 215, 0.4), transparent 40%);
+    z-index: -1;
+}
+
+/* ===== ЧАСТИЦЫ (ледяные) ===== */
+/* ===== СНЕЖИНКИ (НОРМАЛЬНЫЕ) ===== */
+.particles span {
+    position: fixed;
+    top: -10px;
+    font-size: 10px;
+    color: rgba(137, 170, 215, 0.7);
+    pointer-events: none;
+
+    animation: snow linear infinite;
+}
+
+@keyframes snow {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) translateX(40px) rotate(360deg);
+        opacity: 0;
+    }
+}
+.particles::before {
+    left: 30%;
+    animation-duration: 12s;
+}
+
+.particles::after {
+    left: 70%;
+    animation-duration: 16s;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* ===== КОНТЕНТ ===== */
+.content {
+    margin-left: 270px;
+    padding: 80px 60px;
+    max-width: 1100px;
+}
+
+/* ===== HEADER ===== */
+.page-header h1 {
+    font-size: 52px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #89aad7, #C3E0F4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 20px rgba(137, 170, 215, 0.4);
+}
+
+.page-header p {
+    color: #6b8cad;
+    margin-bottom: 50px;
+}
+
+/* ===== СЕКЦИИ (СТЕКЛО) ===== */
+.section {
+    position: relative;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 45px;
+
+    border: 1px solid rgba(137, 170, 215, 0.3);
+    backdrop-filter: blur(16px);
+
+    transition: 0.4s ease;
+    overflow: hidden;
+}
+
+/* ПЕРЕЛИВ */
+.section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(195, 224, 244, 0.6), transparent);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+/* ХОВЕР */
+.section:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(137, 170, 215, 0.7);
+
+    box-shadow:
+        0 0 40px rgba(137, 170, 215, 0.25),
+        0 0 15px rgba(195, 224, 244, 0.6);
+}
+
+.section:hover::before {
+    opacity: 1;
+}
+
+/* ТЕКСТ */
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #5f86b3;
+}
+
+.section p {
+    color: #2c3e50;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+    margin-top: 80px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(137, 170, 215, 0.3);
+    text-align: center;
+    color: #6b8cad;
+}
+
+/* ===== СКРОЛЛ ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#C3E0F4, #89aad7);
+    border-radius: 10px;
+}
+
+/* ===== АВАТАР ===== */
+.group-avatar {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+}
+
+.group-avatar img {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid rgba(137, 170, 215, 0.6);
+
+    box-shadow:
+        0 0 20px rgba(137, 170, 215, 0.5),
+        inset 0 0 8px rgba(195, 224, 244, 0.6);
+
+    transition: 0.4s;
+}
+
+.group-avatar img:hover {
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 40px rgba(137, 170, 215, 0.8),
+        0 0 15px rgba(195, 224, 244, 0.8);
+}
+
+.particles span:nth-child(1) { left: 10%; animation-duration: 12s; }
+.particles span:nth-child(2) { left: 20%; animation-duration: 18s; }
+.particles span:nth-child(3) { left: 30%; animation-duration: 14s; }
+.particles span:nth-child(4) { left: 40%; animation-duration: 20s; }
+.particles span:nth-child(5) { left: 50%; animation-duration: 16s; }
+.particles span:nth-child(6) { left: 60%; animation-duration: 22s; }
+.particles span:nth-child(7) { left: 70%; animation-duration: 15s; }
+.particles span:nth-child(8) { left: 80%; animation-duration: 19s; }
+.particles span:nth-child(9) { left: 90%; animation-duration: 17s; }
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 900px) {
+
+    .content {
+        margin-left: 0;
+        padding: 50px 20px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .section {
+        padding: 25px;
+    }
+
+    .group-avatar img {
+        width: 65px;
+        height: 65px;
+    }
+}
